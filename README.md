@@ -3,7 +3,7 @@
 ## Build script
 
 ````
-./scripts/build.sh tplink_c2600
+./build.sh tplink_c2600
 ````
 
 ## Build manually
