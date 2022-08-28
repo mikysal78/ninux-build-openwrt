@@ -72,4 +72,4 @@ mkdir -p $BUILD_DIR
 echo "Copying ./bin contents to $BUILD_DIR"
 cp -r bin/targets/* $BUILD_DIR
 echo "Cleaning bin dir"
-rm -rf ./bin/*
+#rm -rf ./bin/*
