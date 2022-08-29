@@ -11,9 +11,9 @@ BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${TARGET}"
 
 cd ${ROOT_DIR}
 
-if [[ "${TARGET}" != "lamobo_R1" ]]
+if [[ "${TARGET}" != "lamobo_R1" ] | [ "${TARGET}" != "tplink_c2600" ]]
 then
-  # issue on lamobo_R1
+  # issue on lamobo_R1 or tplink_c2600
   # ERROR: package/network/services/ppp failed to build (build variant: default)
   export CONFIG_CCACHE=y
   export CCACHE_DIR=/tmp/ccache
