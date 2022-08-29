@@ -5,7 +5,6 @@ set -x
 TARGET=$1
 OPENWRT_VERSION="v21.02.3"
 
-
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${TARGET}"
 
@@ -70,7 +69,6 @@ make -j$(nproc) || make V=s # Retry with full log if failed
 
 mkdir -p $BUILD_DIR
 echo "Copying ./bin contents to $BUILD_DIR"
-#cp -r bin/targets/* $BUILD_DIR
-cp -r bin/targets/*/*/* $BUILD_DIR
+cp -r bin/targets/* $BUILD_DIR
 echo "Cleaning bin dir"
-#rm -rf ./bin/*
+rm -rf ./bin/*
