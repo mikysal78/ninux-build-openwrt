@@ -14,6 +14,8 @@ if [[ "${TARGET}" != "lamobo_R1" ]] || [[ "${TARGET}" != "tplink_c2600" ]]
 then
   # issue on lamobo_R1 or tplink_c2600
   # ERROR: package/network/services/ppp failed to build (build variant: default)
+  rm -rf $CCACHE_DIR
+  mkdir -m 777 $CCACHE_DIR
   export CONFIG_CCACHE=y
   export CCACHE_DIR=/tmp/ccache
   export CCACHE_MAXSIZE=10G
