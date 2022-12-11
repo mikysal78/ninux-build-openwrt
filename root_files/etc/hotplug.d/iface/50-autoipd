@@ -1,0 +1,20 @@
+# create avahi state directory
+mkdir -p /var/lib
+
+[ ifup = "$ACTION" ] && {
+	[ -n "$DEVICE" ] && {
+		AUTOIP_OPT=$(uci -q get network.${INTERFACE}.autoip)
+		[ "${AUTOIP_OPT}" == "yes" ] && {
+			avahi-autoipd -D ${DEVICE}
+		}
+	}
+}
+
+[ ifdown = "$ACTION" ] && {
+	[ -n "$DEVICE" ] && {
+		AUTOIP_OPT=$(uci -q get network.${INTERFACE}.autoip)
+		[ "${AUTOIP_OPT}" == "yes" ] && {
+			avahi-autoipd -k ${DEVICE}
+		}
+	}
+}
