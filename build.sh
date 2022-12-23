@@ -56,7 +56,7 @@ sed '/telephony/d' feeds.conf.default >> feeds.conf
 ./scripts/feeds update -a -f
 #install luci-proto-autoip
 cp -r -p ${ROOT_DIR}/luci-proto-autoip ${ROOT_DIR}/openwrt/feeds/luci/protocols/
-/scripts/feeds update -a
+./scripts/feeds update -a
 ./scripts/feeds install -a -f
 
 make defconfig
