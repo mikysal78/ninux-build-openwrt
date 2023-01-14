@@ -46,6 +46,7 @@ rm -rf ${ROOT_DIR}/openwrt/files
 cp -r ${ROOT_DIR}/root_files ${ROOT_DIR}/openwrt/files
 
 cp ${ROOT_DIR}/configs/${TARGET}.config ${ROOT_DIR}/openwrt/.config
+cat ${ROOT_DIR}/configs/base-config >> ${ROOT_DIR}/openwrt/.config
 
 # configure feeds
 echo "src-git chilli https://github.com/openwisp/coova-chilli-openwrt.git" > feeds.conf
