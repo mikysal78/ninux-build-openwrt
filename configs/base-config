@@ -67,10 +67,9 @@ CONFIG_LIBCURL_MBEDTLS=y
 CONFIG_PACKAGE_mesh11sd=y
 
 # WirelessAPD
-# CONFIG_PACKAGE_wpad is not set
-# CONFIG_PACKAGE_wpad-mini is not set
-CONFIG_PACKAGE_wpad-mesh-wolfssl=y
-CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_PACKAGE_wpad=y
+# CONFIG_PACKAGE_wpad-basic-wolfssl is not set
+# CONFIG_WPA_WOLFSSL is not set
 
 # IP Addresses and Names
 CONFIG_PACKAGE_avahi-autoipd=y
