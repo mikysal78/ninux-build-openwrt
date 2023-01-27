@@ -74,3 +74,10 @@ CONFIG_PACKAGE_wpad-wolfssl=y
 # IP Addresses and Names
 CONFIG_PACKAGE_avahi-autoipd=y
 CONFIG_PACKAGE_luci-proto-autoip=y
+
+# Wiregiard
+CONFIG_PACKAGE_kmod-wireguard=y
+CONFIG_PACKAGE_luci-app-wireguard=y
+CONFIG_PACKAGE_luci-proto-wireguard=y
+CONFIG_PACKAGE_wireguard-tools=y
+
