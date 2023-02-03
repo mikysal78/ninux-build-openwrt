@@ -27,6 +27,7 @@ CONFIG_PACKAGE_coova-chilli=y
 CONFIG_PACKAGE_lua-cjson=y
 CONFIG_PACKAGE_rpcd-mod-iwinfo=y
 CONFIG_PACKAGE_openvpn-mbedtls=y
+CONFIG_PACKAGE_ethtool=y
 CONFIG_PACKAGE_netjson-monitoring=y
 CONFIG_PACKAGE_openwisp-monitoring=y
 
@@ -81,3 +82,10 @@ CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_wireguard-tools=y
 
+# additional kernel mudules
+CONFIG_PACKAGE_kmod-ipvlan=y
+CONFIG_PACKAGE_kmod-macvlan=y
+
+#Extra
+CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_htop=y
