@@ -81,11 +81,3 @@ CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_wireguard-tools=y
 
-# additional packages
-CONFIG_PACKAGE_kmod-ipvlan=y
-CONFIG_PACKAGE_kmod-macvlan=y
-CONFIG_PACKAGE_macchanger=y
-CONFIG_PACKAGE_nano=y
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_ethtool=y
-
