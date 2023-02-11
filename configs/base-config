@@ -4,7 +4,10 @@ CONFIG_IB=y
 CONFIG_IB_STANDALONE=y
 
 # avoid broken feeds in /etc/opkg/distfeeds.conf
-# CONFIG_FEED_openwisp is not set
+# CONFIG_FEED_chilli is not set
+# CONFIG_FEED_openwisp_config is not set
+# CONFIG_FEED_openwisp_monitoring is not set
+
 
 # additional packages
 CONFIG_PACKAGE_wget=y
@@ -23,10 +26,8 @@ CONFIG_PACKAGE_ipip=y
 CONFIG_PACKAGE_kmod-ipip=y
 CONFIG_PACKAGE_lua-cjson=y
 CONFIG_PACKAGE_uhttpd-mod-ubus=y
-CONFIG_PACKAGE_coova-chilli=y
 CONFIG_PACKAGE_lua-cjson=y
 CONFIG_PACKAGE_rpcd-mod-iwinfo=y
-CONFIG_PACKAGE_openvpn-mbedtls=y
 
 # openwisp2 related packages
 CONFIG_PACKAGE_openwisp-config=y
@@ -42,6 +43,7 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_VI_UNDO=y
 CONFIG_BUSYBOX_CONFIG_WATCH=y
 
 # Chilli
+CONFIG_PACKAGE_coova-chilli=y
 CONFIG_COOVACHILLI_REDIR=y
 CONFIG_COOVACHILLI_OPENSSL=y
 CONFIG_COOVACHILLI_PROXY=y
@@ -50,6 +52,7 @@ CONFIG_COOVACHILLI_UAMDOMAINFILE=y
 CONFIG_COOVACHILLI_JSONINTERFACE=y
 
 # OpenVPN
+CONFIG_PACKAGE_openvpn-mbedtls=y
 CONFIG_OPENVPN_mbedtls_ENABLE_LZO=y
 CONFIG_OPENVPN_mbedtls_ENABLE_LZ4=y
 CONFIG_OPENVPN_mbedtls_ENABLE_MANAGEMENT=y
@@ -77,7 +80,7 @@ CONFIG_PACKAGE_luci-proto-autoip=y
 
 # Wiregiard
 CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_luci-app-wireguard=y
+# CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_wireguard-tools=y
 
