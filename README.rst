@@ -2,7 +2,7 @@
 Ninux NNXX - Openwrt Builds
 ===========================
 
-.. image:: https://github.com/mikysal78/ninux-build-openwrt/workflows/nnxx.png?branch=master
+.. image:: https://github.com/mikysal78/ninux-build-openwrt/blob/master/workflows/nnxx.png
     :target: http://wiki.ninux.org/nnxx
     :alt: Ninux NNXX
 
@@ -83,12 +83,12 @@ nukes everything you have compiled or configured and also deletes all downloaded
 Jenkins
 -------
 
-.. image:: https://github.com/mikysal78/ninux-build-openwrt/workflows/project.png?branch=master
+.. image:: https://github.com/mikysal78/ninux-build-openwrt/blob/master/workflows/project.png
     :alt: Jenkins project
 
-.. image:: https://github.com/mikysal78/ninux-build-openwrt/workflows/repo.png?branch=master
+.. image:: https://github.com/mikysal78/ninux-build-openwrt/blob/master/workflows/repo.png
     :alt: Jenkins repository
 
-.. image:: https://github.com/mikysal78/ninux-build-openwrt/workflows/esegui.png?branch=master
+.. image:: https://github.com/mikysal78/ninux-build-openwrt/blob/master/workflows/esegui.png
     :alt: Jenkins build
 
