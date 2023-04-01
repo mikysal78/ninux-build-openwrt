@@ -1,0 +1,4 @@
+#!/bin/sh
+
+uci add_list dhcp.@dnsmasq[0].notinterface='pppoe-wan'
+uci commit dhcp
