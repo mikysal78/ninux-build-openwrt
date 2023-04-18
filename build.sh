@@ -51,12 +51,14 @@ echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git^1.
 echo "src-git openwisp_monitoring https://github.com/openwisp/openwrt-openwisp-monitoring.git" >> feeds.conf
 sed '/telephony/d' feeds.conf.default >> feeds.conf
 
+./scripts/feeds update -a -f
+./scripts/feeds install -a -f
+rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
 cp ${ROOT_DIR}/configs/${TARGET}.config ${ROOT_DIR}/openwrt/.config
 cat ${ROOT_DIR}/configs/base-config >> ${ROOT_DIR}/openwrt/.config
+make defconfig
 
-./scripts/feeds update -a -f
-./scripts/feeds install -a -f
 
 make defconfig
 
