@@ -63,6 +63,9 @@ CONFIG_OPENVPN_mbedtls_ENABLE_DEF_AUTH=y
 CONFIG_OPENVPN_mbedtls_ENABLE_PF=y
 CONFIG_OPENVPN_mbedtls_ENABLE_SMALL=y
 
+#ZeroTier VPN
+CONFIG_PACKAGE_zerotier=y
+
 # allow to build curl with different ssl library
 CONFIG_LIBCURL_MBEDTLS=y
 
