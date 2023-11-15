@@ -20,7 +20,6 @@ then
   export CCACHE_COMPILERCHECK="%compiler% -dumpmachine; %compiler% -dumpversion"
   rm -rf $CCACHE_DIR
   mkdir -m 777 $CCACHE_DIR
-
 else
   export CLEAN_BUILD=true
 fi
@@ -40,7 +39,7 @@ git reset --hard HEAD^
 git checkout -f ${OPENWRT_VERSION}
 
 # Patch kernel config to enable nf_conntrack_events
-#patch ${ROOT_DIR}/openwrt/target/linux/generic/config-5.4 < ${ROOT_DIR}/configs/kernel-config.patch
+patch ${ROOT_DIR}/openwrt/target/linux/generic/config-5.10 < ${ROOT_DIR}/configs/kernel-config.patch
 
 rm -rf ${ROOT_DIR}/openwrt/files
 cp -r ${ROOT_DIR}/root_files ${ROOT_DIR}/openwrt/files
@@ -58,8 +57,6 @@ rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
 cp ${ROOT_DIR}/configs/${TARGET}.config ${ROOT_DIR}/openwrt/.config
 cat ${ROOT_DIR}/configs/base-config >> ${ROOT_DIR}/openwrt/.config
-make defconfig
-
 
 make defconfig
 
