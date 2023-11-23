@@ -58,7 +58,7 @@ CONFIG_PACKAGE_zerotier=y
 CONFIG_LIBCURL_MBEDTLS=y
 
 # Mesh
-CONFIG_PACKAGE_mesh11sd=y
+CONFIG_PACKAGE_mesh11sd=m
 
 # WirelessAPD
 # CONFIG_PACKAGE_wpad-basic-wolfssl is not set
