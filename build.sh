@@ -18,8 +18,7 @@ then
   export CCACHE_DIR=/tmp/ccache
   export CCACHE_MAXSIZE=10G
   export CCACHE_COMPILERCHECK="%compiler% -dumpmachine; %compiler% -dumpversion"
-  #rm -rf $CCACHE_DIR
-  mkdir -m 777 $CCACHE_DIR
+  [ -d $CCACHE_DIR ] || mkdir -m 777 $CCACHE_DIR
 else
   export CLEAN_BUILD=true
 fi
