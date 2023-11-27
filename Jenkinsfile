@@ -8,7 +8,7 @@ Map ARCHIVES_PATH = [
     "linksys_wrt3200acm": "openwrt/bin/targets/mvebu/cortexa9/openwrt-mvebu-cortexa9-linksys_wrt1900ac-v1-squashfs-sysupgrade.bin",
     "totolink_X5000R": "openwrt/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-ubnt_edgerouter-x-squashfs-sysupgrade.bin",
     "tplink_c2600": "openwrt/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-glinet_gl-mt1300-squashfs-sysupgrade.bin",
-    "x86_64": "openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz",
+    "X86_64": "openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz",
     "raspy_3": "openwrt/bin/target/bcm27xx/bcm2710/openwrt-bcm27xx-bcm2710-rpi-3-squashfs-sysupgrade.img.gz",
     "raspy_4": "openwrt/bin/target/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz"
 ]
