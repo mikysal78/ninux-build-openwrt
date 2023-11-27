@@ -18,7 +18,7 @@ then
   export CCACHE_DIR=/tmp/ccache
   export CCACHE_MAXSIZE=10G
   export CCACHE_COMPILERCHECK="%compiler% -dumpmachine; %compiler% -dumpversion"
-  rm -rf $CCACHE_DIR
+  sudo rm -rf $CCACHE_DIR
   mkdir -m 777 $CCACHE_DIR
 else
   export CLEAN_BUILD=true
@@ -65,6 +65,9 @@ then
     make clean
 fi
 
+echo "Cleaning bin dir"
+rm -rf ./bin/*
+
 #  If you try compiling OpenWrt on multiple cores and don't download all source files for all dependency packages
 #  it is very likely that your build will fail.
 # https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem#download_sources_and_multi_core_compile
@@ -75,5 +78,3 @@ make -j$(nproc) || make V=s # Retry with full log if failed
 mkdir -p $BUILD_DIR
 echo "Copying ./bin contents to $BUILD_DIR"
 cp -r bin/targets/* $BUILD_DIR
-echo "Cleaning bin dir"
-rm -rf ./bin/*
