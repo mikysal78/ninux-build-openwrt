@@ -73,3 +73,9 @@ rm -rf ./bin/*
 make download
 
 make -j$(nproc) || make V=s # Retry with full log if failed
+
+mkdir -p $BUILD_DIR
+echo "Copying ./bin contents to $BUILD_DIR"
+cp -r bin/targets/* $BUILD_DIR
+echo "Cleaning bin dir"
+rm -rf ./bin/*
