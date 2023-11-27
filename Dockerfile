@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:bookworm
 
 RUN apt-get update &&\
     apt-get install -y \
@@ -7,8 +7,8 @@ RUN apt-get update &&\
         flex gettext wget unzip xz-utils rsync curl libsnmp-dev liblzma-dev \
         libpam0g-dev cpio rsync python3 && \
     apt-get clean
-#    useradd -m user && \
-#    echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user
+    useradd -m user && \
+    echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user
 
 USER user
 WORKDIR /home/user
