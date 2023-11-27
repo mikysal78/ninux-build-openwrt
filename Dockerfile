@@ -6,7 +6,7 @@ RUN apt-get update &&\
         libssl-dev patch libncurses5 libncurses5-dev zlib1g-dev gawk \
         flex gettext wget unzip xz-utils rsync curl libsnmp-dev liblzma-dev \
         libpam0g-dev cpio rsync python3 && \
-    apt-get clean
+    apt-get clean && \
     useradd -m user && \
     echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user
 
