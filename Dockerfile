@@ -19,4 +19,5 @@ WORKDIR /home/user
 # set dummy git config
 RUN git config --global user.name "user" && git config --global user.email "user@example.com"
 
-RUN wget https://github.com/github-release/github-release/releases/download/v0.9.0/linux-amd64-github-release.bz2 -O- | bzip2 -d > /usr/local/bin/github-release && chmod +x /usr/local/bin/github-release
+RUN wget -P $WORKDIR https://github.com/github-release/github-release/releases/download/v0.9.0/linux-amd64-github-release.bz2
+RUN bzip2 $WORKDIR/linux-amd64-github-release.bz2 -d > /usr/local/bin/github-release && chmod +x /usr/local/bin/github-release
