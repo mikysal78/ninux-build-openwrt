@@ -19,6 +19,3 @@ WORKDIR /home/user
 # set dummy git config
 RUN git config --global user.name "user" && git config --global user.email "user@example.com"
 
-RUN wget -P /tmp/ https://github.com/github-release/github-release/releases/download/v0.9.0/linux-amd64-github-release.bz2
-RUN sudo bzip2 /tmp/linux-amd64-github-release.bz2 -d > /usr/local/bin/github-release
-RUN sudo chmod +x /usr/local/bin/github-release
