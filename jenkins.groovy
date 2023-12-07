@@ -30,7 +30,7 @@ def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
         } else {
               withCredentials([
                       [$class: 'StringBinding', credentialsId: 'GithabToken', variable: 'GITHUB_TOKEN'],
-
+                      [$class: 'UsernamePasswordMultiBinding', credentialsId: 'JenkinsUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
                       [$class: 'usernamePassword', credentialsId: 'GithubApp', usernameVariable: 'GITHUB_APP', passwordVariable: 'GITHUB_ACCESS_TOKEN']
               ]) {
 
