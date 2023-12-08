@@ -28,10 +28,16 @@ def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
         if (!GIT_TAG) {
             Utils.markStageSkippedForConditional(STAGE_NAME)
         } else {
-              withCredentials([
-                      [$class: 'StringBinding', credentialsId: 'GithabToken', variable: 'GITHUB_TOKEN'],
-                      [$class: 'UsernamePasswordMultiBinding', credentialsId: 'JenkinsUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
-                      [$class: 'usernamePassword', credentialsId: 'GithubApp', usernameVariable: 'GITHUB_APP', passwordVariable: 'GITHUB_ACCESS_TOKEN']
+#              withCredentials([
+#                      [$class: 'StringBinding', credentialsId: 'GithabToken', variable: 'GITHUB_TOKEN'],
+#                      [$class: 'UsernamePasswordMultiBinding', credentialsId: 'JenkinsUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
+#                      [$class: 'usernamePassword', credentialsId: 'GithubApp', usernameVariable: 'GITHUB_APP', passwordVariable: 'GITHUB_ACCESS_TOKEN']
+
+
+withCredentials([gitUsernamePassword(credentialsId: 'GitHubUser', gitToolName: 'Default'), string(credentialsId: 'GithubToken', variable: 'GITHUB_TOKEN'), string(credentialsId: 'GithubApp', variable: 'GITHUB_TOKEN')]) {
+
+
+
               ]) {
 
               sh "github-release info -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG} || github-release release -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG}"
