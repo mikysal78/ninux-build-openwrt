@@ -28,15 +28,14 @@ def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
         if (!GIT_TAG) {
             Utils.markStageSkippedForConditional(STAGE_NAME)
         } else {
-#              withCredentials([
+              withCredentials([
 #                      [$class: 'StringBinding', credentialsId: 'GithabToken', variable: 'GITHUB_TOKEN'],
 #                      [$class: 'UsernamePasswordMultiBinding', credentialsId: 'JenkinsUser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'],
 #                      [$class: 'usernamePassword', credentialsId: 'GithubApp', usernameVariable: 'GITHUB_APP', passwordVariable: 'GITHUB_ACCESS_TOKEN']
 
-
-withCredentials([gitUsernamePassword(credentialsId: 'GitHubUser', gitToolName: 'Default'), string(credentialsId: 'GithubToken', variable: 'GITHUB_TOKEN'), string(credentialsId: 'GithubApp', variable: 'GITHUB_TOKEN')]) {
-
-
+                      [$class: 'gitUsernamePassword', credentialsId: 'GithabUser'],
+                      [$class: 'string', credentialsId: 'GitHubToken', variable: 'GITHUB_TOKEN'],
+                      [$class: 'string', credentialsId: 'GithubApp', variable: 'GITHUB_TOKEN']
 
               ]) {
 
