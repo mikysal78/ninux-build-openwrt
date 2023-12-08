@@ -28,12 +28,7 @@ def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
         if (!GIT_TAG) {
             Utils.markStageSkippedForConditional(STAGE_NAME)
         } else {
-              withCredentials([
-                      [$class: 'gitUsernamePassword', credentialsId: 'GithabUser'],
-                      [$class: 'string', credentialsId: 'GitHubToken', variable: 'GITHUB_TOKEN'],
-                      [$class: 'string', credentialsId: 'GithubApp', variable: 'GITHUB_TOKEN']
-
-              ]) {
+              withCredentials([gitUsernamePassword(credentialsId: 'GitHubUser', gitToolName: 'Default')]) {
 
               sh "github-release info -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG} || github-release release -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG}"
               sh "github-release upload -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG} -n ${ARCHIVE_NAME} -f ${UPLOAD_FILE}"
