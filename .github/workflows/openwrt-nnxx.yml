@@ -58,12 +58,16 @@ jobs:
         name: glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
         path: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
 
-      - name: Create Release and Upload Firmware
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
+        asset_name: "glinet_gl-mt300n-v2-squashfs-sysupgrade.bin"
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Firmware compilati per Ninux NNXX"
 
+  
 
   lamobo_r1:
     runs-on: ubuntu-22.04
