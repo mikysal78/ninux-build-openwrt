@@ -115,7 +115,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: raspi_3-squashfs
-        path: openwrt/bin/target/bcm27xx/bcm2710/openwrt-bcm27xx-bcm2710-rpi-3-squashfs-sysupgrade.img.gz
+        path: openwrt/bin/targets/bcm27xx/bcm2710/openwrt-bcm27xx-bcm2710-rpi-3-squashfs-sysupgrade.img.gz
 
     - name: Compile Raspberry 4
       run: |
@@ -125,7 +125,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: raspi_4-squashfs
-        path: openwrt/bin/target/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz
+        path: openwrt/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz
 
   totolink:
     runs-on: ubuntu-22.04
