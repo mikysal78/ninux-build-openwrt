@@ -25,6 +25,15 @@ jobs:
         name: X86_64-squashfs
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz
 
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz
+        asset_name: "Firmware Ninux $tag"
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Firmware compilati per Ninux NNXX"
+
   glinet_gl-mt300n-v2:
     runs-on: ubuntu-22.04
     steps:
