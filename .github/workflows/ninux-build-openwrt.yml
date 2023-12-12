@@ -1,4 +1,5 @@
 name: Build OpenWRT Ninux
+runs-on: self-hosted
 
 on:
   workflow_dispatch
@@ -26,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: X86_64-squashfs
-        path: bin/targets/*/*/*squashfs*.img.gz
+        path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz
         
     - name: Compile glinet_gl-mt300n-v2
       run: |
@@ -36,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: glinet_gl-mt300n-v2-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
 
     - name: Compile Lamobo_R1
       run: |
@@ -46,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: lamobo_R1-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/targets/sunxi/cortexa7/openwrt-sunxi-cortexa7-lamobo_lamobo-r1-ext4-sdcard.img.gz
 
     - name: Compile linksys_wrt3200acm
       run: |
@@ -56,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: linksys_wrt3200acm-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/targets/mvebu/cortexa9/openwrt-mvebu-cortexa9-linksys_wrt3200acm-squashfs-sysupgrade.bin
 
     - name: Compile Raspberry 3
       run: |
@@ -66,7 +67,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: raspi_3-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/target/bcm27xx/bcm2710/openwrt-bcm27xx-bcm2710-rpi-3-squashfs-sysupgrade.img.gz
 
     - name: Compile Raspberry 4
       run: |
@@ -76,7 +77,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: raspi_4-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/target/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz
 
     - name: Compile Totolink X5000R
       run: |
@@ -86,7 +87,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: totolink_X5000R-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-totolink_x5000r-squashfs-sysupgrade.bin
 
     - name: Compile TP-Link C2600
       run: |
@@ -96,4 +97,4 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: tplink_c2600-squashfs
-        path: bin/targets/*/*/*squashfs*
+        path: openwrt/bin/targets/ipq806x/generic/openwrt-ipq806x-generic-tplink_c2600-squashfs-sysupgrade.bin
