@@ -1,6 +1,11 @@
 name: Build OpenWRT Ninux
 on:
   workflow_dispatch
+
+  push:
+    tags:
+      - 'v*'  # Trigger on tags that start with 'v'
+
 jobs:
   X86:
     runs-on: ubuntu-22.04
@@ -54,8 +59,15 @@ jobs:
     - name: Upload firmware glinet_gl-mt300n-v2 to workflow directory
       uses: actions/upload-artifact@main
       with:
-        name: glinet_gl-mt300n-v2-squashfs
+        name: glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
         path: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
+
+      - name: Create Release and Upload Firmware
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
+
 
   lamobo_r1:
     runs-on: ubuntu-22.04
