@@ -2,10 +2,6 @@ name: Build OpenWRT Ninux
 on:
   workflow_dispatch
 
-  push:
-    tags:
-      - 'v*.*.*'
-
 jobs:
   X86:
     runs-on: ubuntu-22.04
