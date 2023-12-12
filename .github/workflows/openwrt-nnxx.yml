@@ -1,11 +1,8 @@
 name: Build OpenWRT Ninux
 on:
-  workflow_dispatch
-
   push:
     tags:
       - 'v*'  # Trigger on tags that start with 'v'
-
 jobs:
   X86:
     runs-on: ubuntu-22.04
