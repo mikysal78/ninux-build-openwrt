@@ -16,26 +16,19 @@ jobs:
           echo ${{ env.RELEASE_VERSION }}
 
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      - name: Crea Dir
+        run: mkdir -p ciccio
+
+      - name: Crea un file
+        run: touch ciccio/pippo.txt
+
+
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: ${{ env.RELEASE_VERSION }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
+          artifacts: "ciccio/pippo.txt"
+          replacesArtifacts: false
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
 
-
-
-      - name: Create tag artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{github.ref_name}}
-          path: ${{ env.RELEASE_VERSION }}
 
