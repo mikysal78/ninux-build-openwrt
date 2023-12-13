@@ -7,16 +7,16 @@ on:
     tags:        
       - v22.03.05
       - v23.*
-    inputs:
-      tags:
-        description: 'Scegli la versione'
-        required: true
-        default: 'v23.05.2'
-        type: choice
-        options:
-          - v23.05.2
-          - v22.03.5
-          - pippo
+#    inputs:
+#      tags:
+#        description: 'Scegli la versione'
+#        required: true
+#        default: 'v23.05.2'
+#        type: choice
+#        options:
+#          - v23.05.2
+#          - v22.03.5
+#          - pippo
     create:
       tags:
 
