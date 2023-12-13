@@ -47,7 +47,7 @@ jobs:
     - name: release
       uses: actions/create-release@v1
       id: create_release
-      run: echo "release= ${{ github.ref }}" >> "$GITHUB_OUTPUT"
+#      run: echo "release=${{ github.ref }}" >> "$GITHUB_OUTPUT"
       with:
         draft: false
         prerelease: false
