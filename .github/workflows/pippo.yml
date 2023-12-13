@@ -24,11 +24,11 @@ jobs:
 
       - name: Create Github Release
         uses: ncipollo/release-action@v1
-        tag: ${{ env.RELEASE_VERSION }}
         with:
           artifacts: "ciccio/pippo.txt"
           replacesArtifacts: false
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
+          tag: ${{ env.RELEASE_VERSION }}
 
 
