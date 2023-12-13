@@ -55,7 +55,7 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./ciccio/pippo.txt
         asset_name: pippo.txt
-#        asset_content_type: application/gzip
+        asset_content_type: text/plain
 
 
 
