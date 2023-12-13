@@ -30,9 +30,7 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
-          allowUpdates: true
 
-          
 
 
       - name: Create tag artifact
