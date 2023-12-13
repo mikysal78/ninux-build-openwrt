@@ -29,6 +29,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+     - name: Set env
+       run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+     - name: Test
+       run: |
+         echo $RELEASE_VERSION
+         echo ${{ env.RELEASE_VERSION }}
+
     - name: Crea Dir
       run: |
         mkdir -p ciccio
@@ -46,13 +53,16 @@ jobs:
 
     - name: release
       uses: actions/create-release@v1
+  - name: version
+    run: echo "::set-output name=release::${{ github.event.ref_type == 'tag' }}"
+    id: version
       id: create_release
-#      run: echo "release=${{ github.ref }}" >> "$GITHUB_OUTPUT"
       with:
         draft: false
         prerelease: false
-        release_name: ${{ github.ref }}
-  
+        release_name: ${{ github.event.ref_type == 'tag' }}
+      env:
+      GITHUB_TOKEN: ${{ github.token }}
 
     - name: upload file testo artifact
       uses: actions/upload-release-asset@v1
