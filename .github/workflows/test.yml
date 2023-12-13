@@ -11,7 +11,7 @@ jobs:
 
     - name: Crea Dir
       run: |
-        mkdir -p /home/runner/work/ciccio
+        mkdir -p ciccio
 
     - name: Crea un file
       run: |
