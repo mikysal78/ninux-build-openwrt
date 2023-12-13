@@ -1,6 +1,12 @@
 name: TEST
 on:
   workflow_dispatch:
+    branches:    
+      - master
+    # Sequence of patterns matched against refs/tags
+    tags:        
+      - v22.03.05
+      - v23.*
     inputs:
       tags:
         description: 'Scegli la versione'
@@ -11,11 +17,14 @@ on:
           - v23.05.2
           - v22.03.5
           - pippo
+    create:
+      tags:
 
 
 jobs:
   prova:
     runs-on: ubuntu-22.04
+    if: github.event_name == 'create' && startsWith(github.ref, 'refs/tags/v')
     steps:
     - name: Checkout
       uses: actions/checkout@main
@@ -38,14 +47,12 @@ jobs:
     - name: release
       uses: actions/create-release@v1
       id: create_release
+      run: echo "release= ${{ github.ref }}" >> "$GITHUB_OUTPUT"
       with:
         draft: false
         prerelease: false
-        release_name: ${{ steps.version.outputs.version }}
-        tag_name: ${{ inputs.tags }}
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-
+        release_name: ${{ github.ref }}
+  
 
     - name: upload file testo artifact
       uses: actions/upload-release-asset@v1
