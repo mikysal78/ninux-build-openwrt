@@ -23,12 +23,39 @@ jobs:
         name: pippo.txt
         path: ciccio/pippo.txt
 
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v2
+
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
       with:
-        file: ciccio/pippo.txt
-        asset_name: "Test $tag"
-        tag: ${{ github.tag }}
-        overwrite: true
-        body: "Test Firmware compilati per Ninux NNXX"
+        draft: false
+        prerelease: false
+        release_name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+
+    - name: upload file testo artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./ciccio/pippo.txt
+        asset_name: pippo.txt
+#        asset_content_type: application/gzip
+
+
+
+
+
+#    - name: Upload binaries to release
+#      uses: svenstaro/upload-release-action@v2
+#      with:
+#        file: ciccio/pippo.txt
+#        asset_name: "Test $tag"
+#        tag: ${{ github.tag }}
+#        overwrite: true
+#        body: "Test Firmware compilati per Ninux NNXX"
 
