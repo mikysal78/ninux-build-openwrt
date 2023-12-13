@@ -25,17 +25,6 @@ jobs:
   prova:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Set output
-        id: vars
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-      - name: Check output
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ steps.vars.outputs.tag }}
-
     - name: Checkout
       uses: actions/checkout@main
 
@@ -63,7 +52,7 @@ jobs:
       with:
         draft: false
         prerelease: false
-        release_name: ${{ github.event.ref_type == 'tag' }}
+        release_name: pluto
       env:
       GITHUB_TOKEN: ${{ github.token }}
 
