@@ -22,7 +22,8 @@ jobs:
       - name: Crea un file
         run: touch ciccio/pippo.txt
 
-
+      - uses: actions/checkout@v3
+        
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
