@@ -1,0 +1,34 @@
+name: TEST
+on:
+  workflow_dispatch
+
+jobs:
+  prova:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Crea Dir
+      run: |
+        mkdir -p /home/runner/work/ciccio
+
+    - name: Crea un file
+      run: |
+        touch ciccio/pippo.txt
+
+    - name: Upload file to workflow directory
+      uses: actions/upload-artifact@main
+      with:
+        name: pippo.txt
+        path: ciccio/pippo.txt
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ciccio/pippo.txt
+        asset_name: "Test $tag"
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Test Firmware compilati per Ninux NNXX"
+
