@@ -2,6 +2,11 @@ name: TEST
 on:
   workflow_dispatch
 
+on:
+  push:
+    tags:
+      - '*'
+
 jobs:
   prova:
     runs-on: ubuntu-22.04
