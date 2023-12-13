@@ -14,10 +14,14 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
-  x86:
+          
+# GL-Inet GL-MT300n-v2
+  glinet_gl-mt300n-v2:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@main
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Initialization environment
         run: |
           sudo apt update
@@ -25,7 +29,6 @@ jobs:
           gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev \
           python3-distutils rsync unzip zlib1g-dev file wget
 
-# GL-Inet GL-MT300n-v2
       - name: Compile glinet_gl-mt300n-v2
         run: |
           ./build.sh glinet_gl-mt300n-v2
