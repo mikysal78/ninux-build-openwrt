@@ -28,7 +28,7 @@ jobs:
         with:
           artifacts: "ciccio/pippo.txt"
           replacesArtifacts: false
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
 
 
