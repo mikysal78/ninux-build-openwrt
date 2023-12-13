@@ -1,12 +1,8 @@
 name: TEST
 on:
   workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-
+    tags:        
+      - v*
 jobs:
   prova:
     runs-on: ubuntu-22.04
