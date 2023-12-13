@@ -28,7 +28,7 @@ jobs:
       with:
         file: ciccio/pippo.txt
         asset_name: "Test $tag"
-        tag: ${{ github.ref }}
+        tag: ${{ github.tag }}
         overwrite: true
         body: "Test Firmware compilati per Ninux NNXX"
 
