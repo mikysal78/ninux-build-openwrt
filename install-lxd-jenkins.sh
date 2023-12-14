@@ -1,5 +1,20 @@
 #!/bin/bash
 
+apt install snapd -y
+snap refresh
+snap install core
+snap install lxd
+snap refresh
+lxd init
+
+/etc/default/grub
+GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=false"
+
+update-grub2
+
+
+
+
 CONTAINER_NAME=jenkins
 
 lxc info ${CONTAINER_NAME} &> /dev/null || {
@@ -7,9 +22,9 @@ lxc info ${CONTAINER_NAME} &> /dev/null || {
     sleep 5 # Wait network DHCP
     lxc exec ${CONTAINER_NAME} -- bash << EOF
         apt-get update
-        apt-get install -y apt-transport-https wget ca-certificates
-        wget -O- https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-        echo 'deb http://pkg.jenkins-ci.org/debian binary/' > /etc/apt/sources.list.d/jenkins.list
+        apt-get install -y apt-transport-https wget ca-certificates curl openjdk-11-jre
+	curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+	echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
         apt-get update
         # Add OpenWRT Prerequisites
         apt-get install -y git-core build-essential libssl-dev libncurses5-dev unzip gawk subversion mercurial gettext
@@ -19,8 +34,8 @@ lxc info ${CONTAINER_NAME} &> /dev/null || {
         apt-get install -y jenkins
         sleep 5
         wget -q http://127.0.0.1:8080
-        initialAdminPassword=\$(cat /var/lib/jenkins/secrets/initialAdminPassword)
-        echo "initialAdminPassword: \$initialAdminPassword"
+        echo "InitialAdminPassword:"
+        cat /var/lib/jenkins/secrets/initialAdminPassword
 EOF
 }
 
