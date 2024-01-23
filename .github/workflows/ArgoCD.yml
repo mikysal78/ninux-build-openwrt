@@ -1,0 +1,39 @@
+name: ML Workflows Via Actions
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    # This copies the files in this repo, particulary the yaml workflow spec needed for Argo.
+    - name: Step One - checkout files in repo
+      uses: actions/checkout@master
+
+    # Get credentials (the kubeconfig file) the k8 cluster. Copies kubeconfig into /github/workspace/.kube/config
+    - name: Step Two - Get kubeconfig file from GKE
+      uses: machine-learning-apps/gke-kubeconfig@master
+      with:
+        application_credentials: ${{ secrets.APPLICATION_CREDENTIALS }}
+        project_id: ${{ secrets.PROJECT_ID }}
+        location_zone: ${{ secrets.LOCATION_ZONE }}
+        cluster_name: ${{ secrets.CLUSTER_NAME }}
+
+      ###################################################
+      # This is the action that submits the Argo Workflow 
+    - name: Step Three - Submit Argo Workflow from the .argo folder in this repo
+      id: argo
+      uses: machine-learning-apps/actions-argo@master
+      with:
+        argo_url: ${{ secrets.ARGO_URL }}
+        # below is a reference to a YAML file in this repo that defines the workflow.
+        workflow_yaml_path: ".argo/build.yml"
+        parameter_file_path: ".argo/role.yaml"
+      env:
+        # KUBECONFIG tells kubectl where it can find your authentication information.  A config file was saved to this path in Step Two.
+        KUBECONFIG: '/github/workspace/.kube/config'
+
+      # This step displays the Argo URL, and illustrates how you can use the output of the previous Action.
+    - name: test argo outputs
+      run: echo "Argo URL $WORKFLOW_URL"
+      env:
+        WORKFLOW_URL: ${{ steps.argo.outputs.WORKFLOW_URL }}
