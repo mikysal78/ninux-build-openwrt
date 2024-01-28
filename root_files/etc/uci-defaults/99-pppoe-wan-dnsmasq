@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if ! uci -q show dhcp.@dnsmasq[0].notinterface
-then
-    uci add_list dhcp.@dnsmasq[0].notinterface='pppoe-wan'
-    uci commit dhcp
-fi
-
