@@ -37,7 +37,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -64,7 +64,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -100,7 +100,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/sunxi/cortexa7/openwrt-sunxi-cortexa7-lamobo_lamobo-r1-ext4-sdcard.img.gz"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -127,7 +127,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/mvebu/cortexa9/openwrt-mvebu-cortexa9-linksys_wrt3200acm-squashfs-sysupgrade.bin"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -157,7 +157,7 @@ jobs:
           artifacts: |
             - "openwrt/bin/targets/bcm27xx/bcm2710/openwrt-bcm27xx-bcm2710-rpi-3-squashfs-sysupgrade.img.gz"
             - "openwrt/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -184,7 +184,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-totolink_x5000r-squashfs-sysupgrade.bin"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
@@ -211,7 +211,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "openwrt/bin/targets/ipq806x/generic/openwrt-ipq806x-generic-tplink_c2600-squashfs-sysupgrade.bin"
-          replacesArtifacts: false
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
