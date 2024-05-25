@@ -21,7 +21,6 @@ def publishArtifact(UPLOAD_FILE) {
 
 def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
     //Upload on github if tag
-    //sh "git tag --contains a931f65c23d990ff4bf4257e8dd2040d61e53c01 > .git-tag"
     sh "git tag --contains `git rev-parse HEAD` > .git-tag"
     def GIT_TAG = readFile('.git-tag').trim()
     sh "rm .git-tag"
@@ -29,10 +28,10 @@ def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
         if (!GIT_TAG) {
             Utils.markStageSkippedForConditional(STAGE_NAME)
         } else {
-              withCredentials([[$class: 'StringBinding', credentialsId: 'GithubToken', variable: 'GITHUB_TOKEN']]) {
-              //withCredentials([usernamePassword(credentialsId: 'GitHubApp',
-              //                    usernameVariable: 'GITHUB_APP',
-              //                    passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+              //withCredentials([[$class: 'StringBinding', credentialsId: 'GithubToken', variable: 'GITHUB_TOKEN']]) {
+              withCredentials([usernamePassword(credentialsId: 'GitHubApp',
+                                  usernameVariable: 'GITHUB_APP',
+                                  passwordVariable: 'GITHUB_TOKEN')]) {
               sh "github-release info -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG} || github-release release -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG}"
               sh "github-release upload -u mikysal78 -r ninux-build-openwrt -t ${GIT_TAG} -n ${ARCHIVE_NAME} -f ${UPLOAD_FILE}"
             }
