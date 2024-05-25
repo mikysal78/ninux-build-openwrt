@@ -21,7 +21,7 @@ def publishArtifact(UPLOAD_FILE) {
 
 def githubRelease(UPLOAD_FILE, ARCHIVE_NAME) {
     //Upload on github if tag
-    sh "git tag --contains $(git rev-parse HEAD) > .git-tag"
+    bash "git tag --contains $(git rev-parse HEAD) > .git-tag"
     def GIT_TAG = readFile('.git-tag').trim()
     sh "rm .git-tag"
     stage('Publish github release') {
