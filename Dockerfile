@@ -9,6 +9,8 @@ RUN apt-get install -y \
         libpam0g-dev cpio rsync
 RUN wget https://github.com/cli/cli/releases/download/v2.49.2/gh_2.49.2_linux_amd64.deb && \
     apt-get install -f ./gh_2.49.2_linux_amd64.deb && apt-get clean
+RUN wget https://github.com/github-release/github-release/releases/download/v0.9.0/linux-amd64-github-release.bz2 -O- | bzip2 -d > /usr/local/bin/github-release && chmod +x /usr/local/bin/github-release
+
 RUN useradd -m user && echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user
 
 USER user
