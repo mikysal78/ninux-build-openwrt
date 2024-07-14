@@ -13,8 +13,8 @@ Build
 -
 
 Build script:
-Required: -o and -t
-Optional: -c (Captive Portal)
+Required: -o YourOrganizations -t Target
+Optional: -c (Captive Portal): YES or NO
 
 .. code-block:: shell
 

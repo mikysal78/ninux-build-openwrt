@@ -18,7 +18,7 @@ while getopts ${OPTSTRING} opt; do
       ;;
     c)
       echo "Captive Portal: ${OPTARG}"
-      CP="chilli"
+      CP=${OPTARG}
       ;;
     :)
       echo "Option -${OPTARG} requires an argument."
@@ -82,7 +82,7 @@ rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
 cp ${ROOT_DIR}/configs/organizations/${ORG}/${TARGET}.config ${ROOT_DIR}/openwrt/.config
 
-if [ "${CP}" == "chilli" ]; then
+if [ "${CP}" == "YES" ]; then
    cat ${ROOT_DIR}/configs/chilli.ext >> ${ROOT_DIR}/openwrt/.config
 fi
 cat ${ROOT_DIR}/configs/base.config >> ${ROOT_DIR}/openwrt/.config
