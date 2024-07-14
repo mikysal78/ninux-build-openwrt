@@ -20,7 +20,7 @@ Optional: -c (Captive Portal): YES or NO
 
 .. code-block:: shell
 
-    ./local_build.sh -o basilicata -t glinet_gl-mt300n-v2 -c chilli
+    ./local_build.sh -o basilicata -t glinet_gl-mt300n-v2 -c NO
 -
 
 Build manually:
