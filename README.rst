@@ -13,11 +13,12 @@ Build
 -
 
 Build script:
+Required: -o and -t
+Optional: -c (Captive Portal)
 
 .. code-block:: shell
 
-    ./build.sh tplink_c2600
-
+    ./local_build.sh -o basilicata -t glinet_gl-mt300n-v2 -c chilli
 -
 
 Build manually:

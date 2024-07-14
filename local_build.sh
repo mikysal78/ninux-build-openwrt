@@ -4,27 +4,32 @@ set -x
 
 OPENWRT_VERSION="v23.05.3"
 
-ORG="$1"
-if [ ! -n "$ORG" ]; then
-        echo "deve scegliere una organizzazione, esempio: basilicata"
-        ls configs/organizations/
-        exit 0
-else
-        echo "Hai scelto l'organizzazione $ORG"
-fi
+OPTSTRING=":o:t:c:"
 
-TARGET=$2
-if [ ! -n "$TARGET" ]; then
-        echo "deve scegliere un router, esempio: X86_64"
-        echo "scegli da qui sotto e togli il .config:"
-	ls configs/organizations/${ORG}/
-        exit 0
-else
-        echo "Hai scelto l'organizzazione $TARGET"
-fi
-
-#For Chilli aggiungere l'opzione "chilli" al comando
-CP=$3
+while getopts ${OPTSTRING} opt; do
+  case ${opt} in
+    o)
+      echo "Organization: ${OPTARG}"
+      ORG=${OPTARG}
+      ;;
+    t)
+      echo "Target: ${OPTARG}"
+      TARGET=${OPTARG}
+      ;;
+    c)
+      echo "Captive Portal: ${OPTARG}"
+      CP="chilli"
+      ;;
+    :)
+      echo "Option -${OPTARG} requires an argument."
+      exit 1
+      ;;
+    ?)
+      echo "Invalid option: -${OPTARG}."
+      exit 1
+      ;;
+  esac
+done
 
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/${TARGET}"
