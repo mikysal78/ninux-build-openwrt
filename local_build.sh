@@ -2,11 +2,32 @@
 set -e
 set -x
 
-TARGET=$1
 OPENWRT_VERSION="v23.05.3"
 
+ORG="$1"
+if [ ! -n "$ORG" ]; then
+        echo "deve scegliere una organizzazione, esempio: basilicata"
+        ls configs/organizations/
+        exit 0
+else
+        echo "Hai scelto l'organizzazione $ORG"
+fi
+
+TARGET=$2
+if [ ! -n "$TARGET" ]; then
+        echo "deve scegliere un router, esempio: X86_64"
+        echo "scegli da qui sotto e togli il .config:"
+	ls configs/organizations/${ORG}/
+        exit 0
+else
+        echo "Hai scelto l'organizzazione $TARGET"
+fi
+
+#For Chilli aggiungere l'opzione "chilli" al comando
+CP=$3
+
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${TARGET}"
+BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/${TARGET}"
 
 cd ${ROOT_DIR}
 
@@ -41,7 +62,7 @@ git checkout -f ${OPENWRT_VERSION}
 #patch ${ROOT_DIR}/openwrt/target/linux/generic/config-5.10 < ${ROOT_DIR}/configs/kernel-config.patch
 
 rm -rf ${ROOT_DIR}/openwrt/files
-cp -r ${ROOT_DIR}/root_files ${ROOT_DIR}/openwrt/files
+cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
 
 # configure feeds
 echo "src-git chilli https://github.com/openwisp/coova-chilli-openwrt.git" > feeds.conf
@@ -54,8 +75,16 @@ sed '/telephony/d' feeds.conf.default >> feeds.conf
 ./scripts/feeds install -a -f
 rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
-cp ${ROOT_DIR}/configs/${TARGET}.config ${ROOT_DIR}/openwrt/.config
-cat ${ROOT_DIR}/configs/base-config >> ${ROOT_DIR}/openwrt/.config
+cp ${ROOT_DIR}/configs/organizations/${ORG}/${TARGET}.config ${ROOT_DIR}/openwrt/.config
+
+if [ "${CP}" == "chilli" ]; then
+   cat ${ROOT_DIR}/configs/chilli.ext >> ${ROOT_DIR}/openwrt/.config
+fi
+cat ${ROOT_DIR}/configs/base.config >> ${ROOT_DIR}/openwrt/.config
+
+if [[ "${TARGET}" == "X86_64" ]]; then
+    cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
+fi
 
 make defconfig
 
