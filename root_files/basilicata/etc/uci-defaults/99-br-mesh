@@ -3,16 +3,18 @@
 #BRMESHMAC=$(printf "%02x" $(( $(hexdump -n1 -e'/1 "0x%02x"' /dev/urandom) & ~1 | 2)) && hexdump -n5 -e'/1 ":%02x"' /dev/urandom)
 
 uci -q batch <<-EOF >/dev/null
-  set network.ninux_mesh=interface
-  set network.ninux_mesh.auto='1'
-  set network.ninux_mesh.device='br-mesh'
-  set network.ninux_mesh.proto='autoip'
+  set network.mesh=interface
+  set network.mesh.auto='1'
+  set network.mesh.device='br-mesh'
+  set network.mesh.proto='autoip'
 #  set network.ninux_mesh.macaddr=${BRMESHMAC}
-  set network.ninux_mesh.stp='1'
-  set network.device_ninux_mesh=device
-  set network.device_ninux_mesh.bridge_empty='1'
-  set network.device_ninux_mesh.ports='mesh0 mesh1'
-  set network.device_ninux_mesh.name='br-mesh'
-  set network.device_ninux_mesh.type='bridge'
+  set network.mesh.stp='1'
+  set network.device_mesh=device
+  set network.device_mesh.bridge_empty='1'
+  set network.device_mesh.ports='mesh mesh0 wmesh0'
+  set network.device_mesh.name='br-mesh'
+  set network.device_mesh.type='bridge'
+  set network.device_mesh.igmp_snooping='0'
+  set network.device_mesh.mtu='1500'
   commit network
 EOF

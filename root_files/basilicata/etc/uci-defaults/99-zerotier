@@ -3,6 +3,6 @@
 uci -q batch <<-EOF >/dev/null
   set network.ZeroTier=interface
   set network.ZeroTier.proto='none'
-  set network.ZeroTier.device='owzt9dd842'
+  set network.ZeroTier.device='owzt0192af'
   commit network
 EOF
