@@ -44,7 +44,7 @@ rm -rf ${ROOT_DIR}/openwrt/files
 cp -r ${ROOT_DIR}/root_files ${ROOT_DIR}/openwrt/files
 
 # configure feeds
-echo "src-git chilli https://github.com/openwisp/coova-chilli-openwrt.git" > feeds.conf
+echo "src-git chilli https://github.com/mikysal78/coova-chilli-openwrt.git" > feeds.conf
 echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git^1.0.1" >> feeds.conf
 echo "src-git openwisp_monitoring https://github.com/openwisp/openwrt-openwisp-monitoring.git" >> feeds.conf
 echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf
