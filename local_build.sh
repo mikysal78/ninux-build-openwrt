@@ -32,7 +32,11 @@ while getopts ${OPTSTRING} opt; do
 done
 
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/${TARGET}"
+if [ "${CP}" == "YES" ]; then
+   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/CaptivePortal/${TARGET}"
+ else
+   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/Standard/${TARGET}"
+fi
 
 cd ${ROOT_DIR}
 
@@ -110,6 +114,7 @@ make download
 make -j$(nproc) || make V=s # Retry with full log if failed
 
 mkdir -p $BUILD_DIR
+
 echo "Copying ./bin contents to $BUILD_DIR"
 cp -r bin/targets/* $BUILD_DIR
 echo "Cleaning bin dir"
