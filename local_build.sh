@@ -71,7 +71,23 @@ git checkout -f ${OPENWRT_VERSION}
 #patch ${ROOT_DIR}/openwrt/target/linux/generic/config-5.10 < ${ROOT_DIR}/configs/kernel-config.patch
 
 rm -rf ${ROOT_DIR}/openwrt/files
+
+if [ "${CP}" == "YES" ]; then
+cat <<EOF >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
+#!/bin/sh
+uci -q batch <<-EOF >/dev/null
+	set network.CaptivePortal=interface
+	set network.CaptivePortal.proto='autoip'
+	set network.CaptivePortal.device='br-captive'
+	set network.device_CaptivePortal.name='br-captive'
+	set network.device_CaptivePortal.type='bridge'
+	set network.device_CaptivePortal.bridge_empty='1'
+	commit network
+EOF
+EOF
+fi
 cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
+
 
 # configure feeds
 echo "src-git chilli https://github.com/mikysal78/coova-chilli-openwrt.git" > feeds.conf

@@ -14,3 +14,12 @@ then
     uci add_list dhcp.@dnsmasq[0].server='2001:4860:4860::8888'
     uci commit dhcp
 fi
+
+# Abilita a risolvere i domini da locale
+if ! uci -q show dhcp.@dnsmasq[0].rebind_domain
+then
+    uci add_list dhcp.@dnsmasq[0].rebind_domain='*.nnxx.ninux.org'
+    uci commit dhcp
+fi
+
+
