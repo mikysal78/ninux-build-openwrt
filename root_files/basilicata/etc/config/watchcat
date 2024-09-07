@@ -6,4 +6,3 @@ config watchcat
 	option addressfamily 'ipv4'
 	option pingperiod '30s'
 	option pingsize 'standard'
-	option interface '@ZeroTier'
