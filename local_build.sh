@@ -73,15 +73,23 @@ git checkout -f ${OPENWRT_VERSION}
 rm -rf ${ROOT_DIR}/openwrt/files
 
 if [ "${CP}" == "YES" ]; then
+echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
     echo "#!/bin/sh
-uci -q batch <<-EOF >/dev/null
-set network.CaptivePortal=interface
-set network.CaptivePortal.proto='autoip'
-set network.CaptivePortal.device='br-captive'
-set network.device_CaptivePortal.name='br-captive'
-set network.device_CaptivePortal.type='bridge'
-set network.device_CaptivePortal.bridge_empty='1'
-commit network" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
+	uci -q batch <<-EOF >/dev/null
+	set network.CP=interface
+	set network.CP.auto='1'
+	set network.CP.device='br-cp'
+	set network.CP.proto='autoip'
+	set network.CP.stp='1'
+	set network.device_CP=device
+	set network.device_CP.bridge_empty='1'
+	set network.device_CP.ports='cpwlan0'
+	set network.device_CP.name='br-cp'
+	set network.device_CP.type='bridge'
+	set network.device_CP.igmp_snooping='0'
+	set network.device_CP.mtu='1500'
+	commit network
+	EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 fi
 
 cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
