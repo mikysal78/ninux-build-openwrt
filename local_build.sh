@@ -91,7 +91,9 @@ echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 	commit network
 	EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 fi
-
+if [ "${CP}" == "NO" ]; then
+   echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
+fi
 cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
 
 # configure feeds
