@@ -8,10 +8,11 @@ fi
 
 if ! uci -q show dhcp.@dnsmasq[0].server
 then
-    uci add_list dhcp.@dnsmasq[0].server='/nnxx/141.95.18.146'
-    uci add_list dhcp.@dnsmasq[0].server='/nnxx/51.178.46.85'
+    uci add_list dhcp.@dnsmasq[0].server='/nnxx/51.77.211.116'
+    uci add_list dhcp.@dnsmasq[0].server='/nnxx/195.32.70.193'
+    uci add_list dhcp.@dnsmasq[0].server='1.1.1.1'
     uci add_list dhcp.@dnsmasq[0].server='8.8.8.8'
-    uci add_list dhcp.@dnsmasq[0].server='2001:4860:4860::8888'
+    uci add_list dhcp.@dnsmasq[0].server='2606:4700:4700::1111'
     uci commit dhcp
 fi
 
