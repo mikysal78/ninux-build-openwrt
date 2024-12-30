@@ -2,7 +2,7 @@
 set -e
 set -x
 
-OPENWRT_VERSION="v24.10.0-rc2"
+OPENWRT_VERSION="v24.10.0-rc4"
 
 OPTSTRING=":o:t:c:"
 
