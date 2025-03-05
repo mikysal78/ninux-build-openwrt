@@ -115,7 +115,7 @@ if [ "${CP}" == "YES" ]; then
 fi
 cat ${ROOT_DIR}/configs/base.config >> ${ROOT_DIR}/openwrt/.config
 
-if [[ "${TARGET}" == "X86_64" ]]; then
+if [[ "${TARGET}" == "X86_64" ]] || [[ "${TARGET}" == "zyxel_nwa50ax-pro" ]] ; then
     cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
 fi
 
