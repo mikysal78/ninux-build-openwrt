@@ -20,6 +20,10 @@ while getopts ${OPTSTRING} opt; do
       echo "Captive Portal: ${OPTARG}"
       CP=${OPTARG}
       ;;
+    v)
+      echo "VPN: ${OPTARG}"
+      VPN=${OPTARG}
+      ;;
     :)
       echo "Option -${OPTARG} requires an argument."
       exit 1
@@ -115,9 +119,24 @@ if [ "${CP}" == "YES" ]; then
 fi
 cat ${ROOT_DIR}/configs/base.config >> ${ROOT_DIR}/openwrt/.config
 
-if [[ "${TARGET}" == "X86_64" ]] || [[ "${TARGET}" == "zyxel_nwa50ax-pro" ]] ; then
-    cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
+##### VPN ####
+#if [[ "${TARGET}" == "X86_64" ]] || [[ "${TARGET}" == "zyxel_nwa50ax-pro" ]] ; then
+#    cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
+#fi
+
+if [ "${VPN}" == "ZeroTier" ]; then
+   cat ${ROOT_DIR}/configs/zerotier.ext >> ${ROOT_DIR}/openwrt/.config
 fi
+
+if [ "${VPN}" == "WireGuiard" ]; then
+   cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
+fi
+
+if [ "${VPN}" == "DualVPN" ]; then
+   cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
+   cat ${ROOT_DIR}/configs/zerotier.ext >> ${ROOT_DIR}/openwrt/.config
+fi
+############
 
 make defconfig
 
