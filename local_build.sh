@@ -95,6 +95,18 @@ echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 	commit network
 	EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 fi
+
+if [[ "${VPN}" == "ZeroTier" ]] || [[ "${VPN}" == "DualVPN" ]] ; then
+echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
+    echo "#!/bin/sh
+        uci -q batch <<-EOF >/dev/null
+	set network.ZeroTier=interface
+	set network.ZeroTier.proto='none'
+	set network.ZeroTier.device='owzt0192af'
+	commit network
+        EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
+fi
+
 if [ "${CP}" == "NO" ]; then
    echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 fi
