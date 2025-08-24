@@ -2,9 +2,9 @@
 set -e
 set -x
 
-OPENWRT_VERSION="v24.10.0"
+OPENWRT_VERSION="v24.10.2"
 
-OPTSTRING=":o:t:c:"
+OPTSTRING=":o:t:c:v:"
 
 while getopts ${OPTSTRING} opt; do
   case ${opt} in
@@ -116,8 +116,8 @@ cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
 echo "src-git chilli https://github.com/mikysal78/coova-chilli-openwrt.git" > feeds.conf
 echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git^1.0.1" >> feeds.conf
 echo "src-git openwisp_monitoring https://github.com/openwisp/openwrt-openwisp-monitoring.git" >> feeds.conf
-#echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf
-echo "src-git zerotier https://github.com/mikysal78/zerotier-openwrt.git" >> feeds.conf
+echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf
+#echo "src-git zerotier https://github.com/mikysal78/zerotier-openwrt.git" >> feeds.conf
 sed '/telephony/d' feeds.conf.default >> feeds.conf
 
 ./scripts/feeds update -a -f
