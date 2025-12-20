@@ -2,7 +2,7 @@
 set -e
 set -x
 
-OPENWRT_VERSION="v24.10.4"
+OPENWRT_VERSION="v24.10.5"
 
 OPTSTRING=":o:t:c:v:"
 
@@ -102,7 +102,7 @@ echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
         uci -q batch <<-EOF >/dev/null
 	set network.ZeroTier=interface
 	set network.ZeroTier.proto='none'
-	set network.ZeroTier.device='owzt0192af'
+	set network.ZeroTier.device='owzt0d3e97'
 	commit network
         EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
 fi
@@ -114,7 +114,7 @@ cp -r ${ROOT_DIR}/root_files/${ORG} ${ROOT_DIR}/openwrt/files
 
 # configure feeds
 echo "src-git chilli https://github.com/mikysal78/coova-chilli-openwrt.git" > feeds.conf
-echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git^1.0.1" >> feeds.conf
+echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git" >> feeds.conf
 echo "src-git openwisp_monitoring https://github.com/openwisp/openwrt-openwisp-monitoring.git" >> feeds.conf
 echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf
 #echo "src-git zerotier https://github.com/mikysal78/zerotier-openwrt.git" >> feeds.conf
