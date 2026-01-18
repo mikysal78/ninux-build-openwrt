@@ -37,9 +37,9 @@ done
 
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [ "${CP}" == "YES" ]; then
-   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/CaptivePortal/${TARGET}"
+   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/CaptivePortal/VPN-${VPN}/${TARGET}"
  else
-   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/Standard/${TARGET}"
+   BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${ORG}/Standard/VPN-${VPN}/${TARGET}"
 fi
 
 cd ${ROOT_DIR}
@@ -107,6 +107,10 @@ echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
         EOF" >> ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-zerotier
 fi
 
+if [[ "${VPN}" == "NO" ]] ; then
+	echo "No VPN, for local router"
+fi
+
 if [ "${CP}" == "NO" ]; then
    echo "" > ${ROOT_DIR}/root_files/${ORG}/etc/uci-defaults/99-br-cp
 fi
@@ -148,6 +152,11 @@ if [ "${VPN}" == "DualVPN" ]; then
    cat ${ROOT_DIR}/configs/wireguard.ext >> ${ROOT_DIR}/openwrt/.config
    cat ${ROOT_DIR}/configs/zerotier.ext >> ${ROOT_DIR}/openwrt/.config
 fi
+
+if [ "${VPN}" == "NO" ]; then
+   echo "No VPN, for local router"
+fi
+
 ############
 
 make defconfig
