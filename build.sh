@@ -3,10 +3,10 @@ set -e
 set -x
 
 TARGET=$1
-OPENWRT_VERSION="v25.12.2"
+OPENWRT_VERSION="v25.12.3"
 
 ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-BUILD_DIR="/mnt/nfs-firmware/${OPENWRT_VERSION}/${TARGET}"
+BUILD_DIR="${OPENWRT_VERSION}/${TARGET}"
 
 cd ${ROOT_DIR}
 
