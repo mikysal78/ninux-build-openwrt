@@ -48,6 +48,7 @@ echo "src-git chilli https://github.com/mikysal78/coova-chilli-openwrt.git" > fe
 echo "src-git openwisp_config https://github.com/openwisp/openwisp-config.git^1.0.1" >> feeds.conf
 echo "src-git openwisp_monitoring https://github.com/openwisp/openwrt-openwisp-monitoring.git" >> feeds.conf
 echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf
+echo "src-git ninux_theme https://github.com/mikysal78/luci-theme-ninux.git" >> feeds.conf
 sed '/telephony/d' feeds.conf.default >> feeds.conf
 
 ${ROOT_DIR}/feed_patches.sh revert
@@ -58,6 +59,11 @@ rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
 cp ${ROOT_DIR}/configs/${TARGET}.config ${ROOT_DIR}/openwrt/.config
 cat ${ROOT_DIR}/configs/base-config >> ${ROOT_DIR}/openwrt/.config
+
+# Tema LuCI ninux su tutti i target tranne X86_64
+if [ "${TARGET}" != "X86_64" ]; then
+   cat ${ROOT_DIR}/configs/luci-theme-ninux.ext >> ${ROOT_DIR}/openwrt/.config
+fi
 
 make defconfig
 

@@ -1,0 +1,4 @@
+# Tema LuCI ninux (modalità Base/Avanzato), dal feed ninux_theme
+# https://github.com/mikysal78/luci-theme-ninux
+# Alla prima accensione diventa il tema predefinito (Bootstrap resta installato).
+CONFIG_PACKAGE_luci-theme-ninux=y
