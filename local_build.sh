@@ -124,7 +124,9 @@ echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feed
 #echo "src-git zerotier https://github.com/mikysal78/zerotier-openwrt.git" >> feeds.conf
 sed '/telephony/d' feeds.conf.default >> feeds.conf
 
+${ROOT_DIR}/feed_patches.sh revert
 ./scripts/feeds update -a -f
+${ROOT_DIR}/feed_patches.sh apply # patch NINUX in patches/feeds/
 ./scripts/feeds install -a -f
 rm -rf package/feeds/luci/luci-app-apinger
 rm -rf ${ROOT_DIR}/openwrt/.config*
